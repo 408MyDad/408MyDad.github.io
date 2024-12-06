@@ -72,7 +72,7 @@ avatar:
 disable_top_img: false
 
 # If the banner of page not setting, it will show the default_top_img
-default_top_img: https://i.pinimg.com/736x/c9/c6/f5/c9c6f5fa957f216bca8d19bae6e74bca.jpg
+default_top_img: https://i.pinimg.com/736x/0e/3b/29/0e3b294beb09239a0625d82a2e2c0561.jpg
 # The banner image of index page
 index_img:
 
@@ -96,11 +96,11 @@ category_img:
 category_per_img:
 
 # The background image of footer
-footer_img: false
-
+footer_img: true
+img: https://i.pinimg.com/736x/ab/09/83/ab0983e940dd5d6aa3e5794e37242af9.jpg
 # Website Background
 # Can set it to color or image url
-background: https://i.pinimg.com/736x/62/8a/e2/628ae22269e50e2b4e335770c3bbc742.jpg
+background: https://i.pinimg.com/736x/66/5d/65/665d6535f6d9ee1913fa22cec9781f48.jpg
 
 cover:
   # Disable the cover or not

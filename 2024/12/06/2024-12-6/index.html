@@ -1,0 +1,526 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>常量变量和表达式 | Digital Alchemist</title><meta name="author" content="Ethan Chang"><meta name="copyright" content="Ethan Chang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="自用快速复习c语言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常量变量和表达式">
+<meta property="og:url" content="http://example.com/2024/12/06/2024-12-6/index.html">
+<meta property="og:site_name" content="Digital Alchemist">
+<meta property="og:description" content="自用快速复习c语言">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.pinimg.com/736x/b1/fd/9f/b1fd9f687f45ab084a56cf40882b0dbd.jpg">
+<meta property="article:published_time" content="2024-12-06T09:52:02.000Z">
+<meta property="article:modified_time" content="2024-12-06T09:59:31.392Z">
+<meta property="article:author" content="Ethan Chang">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.pinimg.com/736x/b1/fd/9f/b1fd9f687f45ab084a56cf40882b0dbd.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/12/06/2024-12-6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '常量变量和表达式',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(https://i.pinimg.com/736x/66/5d/65/665d6535f6d9ee1913fa22cec9781f48.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://i.pinimg.com/736x/0a/aa/bd/0aaabd0d59dd536a48a591df211edf24.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://i.pinimg.com/736x/b1/fd/9f/b1fd9f687f45ab084a56cf40882b0dbd.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://i.pinimg.com/736x/95/4f/a0/954fa0ca0a80dba448508d9e45a6db44.jpg" alt="Logo"><span class="site-name">Digital Alchemist</span></a><a class="nav-page-title" href="/"><span class="site-name">常量变量和表达式</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">常量变量和表达式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-06T09:52:02.000Z" title="发表于 2024-12-06 17:52:02">2024-12-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-06T09:59:31.392Z" title="更新于 2024-12-06 17:59:31">2024-12-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="常量变量和表达式"><a href="#常量变量和表达式" class="headerlink" title="常量变量和表达式"></a>常量变量和表达式</h1><p>给出如下代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> *comment1</span></span><br><span class="line"><span class="comment"> * main: generate some simple output </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="comment">/* comment2 */</span><span class="string">&quot;Hello, world.\n&quot;</span>); <span class="comment">/* comment3 */</span></span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>C语言注释注意事项：</p>
+<ul>
+<li><strong>多行注释</strong>：<code>/* */</code>不能嵌套，否则会导致解析错误。</li>
+<li><strong>单行注释</strong>：<code>//</code>从标记开始至行尾，不可跨行，仅C99及以上标准支持，使用需注意兼容性。</li>
+</ul>
+<h4 id="一-C语言字符串与转义序列总结"><a href="#一-C语言字符串与转义序列总结" class="headerlink" title="一. C语言字符串与转义序列总结"></a>一. C语言字符串与转义序列总结</h4><ol>
+<li><strong>字符串字面值</strong>：<ul>
+<li>用双引号 <code>&quot;</code> 包裹，表示一串字符。</li>
+<li>双引号是界定符，不属于字符串内容。</li>
+<li>转义序列如 <code>\n</code> 表示特殊含义，而非字符本身。</li>
+</ul>
+</li>
+<li><strong>转义序列的作用</strong>：<ul>
+<li><strong>普通字符 → 特殊字符</strong>：如 <code>\n</code> 表示换行，<code>\t</code> 表示制表符。</li>
+<li><strong>特殊字符 → 普通字符</strong>：如 <code>\\</code> 表示反斜线，<code>\&quot;</code> 表示双引号。</li>
+</ul>
+</li>
+<li><strong>常用转义字符</strong>：<ul>
+<li><code>\n</code>：换行</li>
+<li><code>\t</code>：制表符</li>
+<li><code>\r</code>：回车</li>
+<li><code>\\</code>：反斜线</li>
+<li><code>\&quot;</code>：双引号</li>
+</ul>
+</li>
+<li><strong>注意事项</strong>：<ul>
+<li>Windows文本行分隔符用 <code>\r\n</code>，Linux&#x2F;UNIX用 <code>\n</code>。</li>
+<li>转义字符作用于特殊终端操作，例如 <code>\a</code> 响铃，<code>\b</code> 退格。</li>
+<li><code>\v</code> 水平制表符少用，<code> \t</code> 更常见。</li>
+</ul>
+</li>
+</ol>
+<p>以下是常用转义字符及其效果的说明：</p>
+<table>
+<thead>
+<tr>
+<th><strong>转义字符</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>效果示例</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\\</code></td>
+<td>反斜线</td>
+<td>输出 <code>\</code></td>
+</tr>
+<tr>
+<td><code>\&quot;</code></td>
+<td>双引号</td>
+<td>输出 <code>&quot;</code></td>
+</tr>
+<tr>
+<td><code>\&#39;</code></td>
+<td>单引号</td>
+<td>输出 <code>&#39;</code></td>
+</tr>
+<tr>
+<td><code>\n</code></td>
+<td>换行符</td>
+<td>换到下一行</td>
+</tr>
+<tr>
+<td><code>\r</code></td>
+<td>回车符</td>
+<td>光标回到当前行开头（覆盖后续字符）</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>水平制表符（Tab键效果）</td>
+<td>跳到下一个水平制表位（对齐效果）</td>
+</tr>
+<tr>
+<td><code>\v</code></td>
+<td>垂直制表符</td>
+<td>跳到下一行的表格位（较少用）</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>退格符</td>
+<td>删除光标前的一个字符</td>
+</tr>
+<tr>
+<td><code>\f</code></td>
+<td>分页符</td>
+<td>控制打印机换页（在终端中无效果）</td>
+</tr>
+<tr>
+<td><code>\a</code></td>
+<td>响铃（报警音）</td>
+<td>在支持的终端上发出提示音</td>
+</tr>
+<tr>
+<td><code>\?</code></td>
+<td>问号</td>
+<td>输出 <code>?</code></td>
+</tr>
+</tbody></table>
+<p>示例代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello,\\ World!\n&quot;</span>);   <span class="comment">// 输出：Hello,\ World! 并换行  </span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\&quot;Quoted Text\&quot;\n&quot;</span>);  <span class="comment">// 输出：&quot;Quoted Text&quot; 并换行  </span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Column1\tColumn2\n&quot;</span>); <span class="comment">// 输出两列文字对齐  </span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Backspace\bX\n&quot;</span>);     <span class="comment">// 输出：BackspacX（退格覆盖e）  </span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Beep!\a\n&quot;</span>);          <span class="comment">// 终端响铃（视终端支持而定）  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Hello,\ World!</span><br><span class="line">&quot;Quoted Text&quot;</span><br><span class="line">Column1    Column2</span><br><span class="line">BackspacX</span><br><span class="line">Beep!      （发出提示音）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<h4 id="二-常量"><a href="#二-常量" class="headerlink" title="二. 常量"></a>二. 常量</h4><ol>
+<li><p><strong>字符常量</strong>：</p>
+<ul>
+<li>用单引号 <code>&#39;</code> 包裹，表示单个字符（如 <code>&#39;a&#39;</code>）。</li>
+<li>可以是转义序列（如 <code>&#39;\n&#39;</code>），表示单个特殊字符。</li>
+<li><code>&#39;</code> 和 <code>\</code> 必须使用转义序列 <code>\&#39;</code> 和 <code>\\</code> 表示。</li>
+</ul>
+</li>
+<li><p><strong>数字常量</strong>：</p>
+<ul>
+<li>包括 <strong>整数</strong> 和 <strong>浮点数</strong>，如 <code>34</code> 和 <code>3.14</code>。</li>
+<li>整数与浮点数在内部存储方式不同，需严格区分。</li>
+</ul>
+</li>
+<li><p><strong>格式化字符串</strong>：</p>
+<ul>
+<li><p>用于 <code>printf</code> 等函数，定义数据的输出格式。</p>
+</li>
+<li><p>占位符</p>
+<p>（<code>%</code>+ 字母）表示插入数据的格式：</p>
+<ul>
+<li><code>%c</code>：字符型</li>
+<li><code>%d</code>：整型</li>
+<li><code>%f</code>：浮点型</li>
+</ul>
+</li>
+<li><p>占位符由函数解释，不属于字符串的字面内容。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>区分不同类型常量</strong>：</p>
+<ul>
+<li><code>&quot;5&quot;</code> 是字符串字面值。</li>
+<li><code>&#39;5&#39;</code> 是字符常量。</li>
+<li><code>5</code> 是整数常量。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<hr>
+<h4 id="三-变量"><a href="#三-变量" class="headerlink" title="三.变量"></a>三.变量</h4><ol>
+<li><strong>定义</strong>：<br>变量是计算机存储器中的一块命名空间，用于存储可变的值。</li>
+<li><strong>类型与存储空间</strong>：<br>变量类型决定所占存储空间大小，常见类型包括：<ul>
+<li><code>char</code>：字符型</li>
+<li><code>int</code>：整型</li>
+<li><code>float</code>：单精度浮点型</li>
+<li><code>double</code>：双精度浮点型</li>
+</ul>
+</li>
+<li><strong>命名规则</strong>：<ul>
+<li>必须以字母或下划线 <code>_</code> 开头，后续可包含字母、数字、下划线。</li>
+<li>不允许包含其他字符（如 <code>$</code>）。</li>
+<li>避免以下划线开头的命名，以防与编译器或库定义冲突。</li>
+</ul>
+</li>
+<li><strong>关键字</strong>：<ul>
+<li>关键字（如 <code>int</code>、<code>while</code>）是保留字，不能作为变量名。</li>
+<li>程序员定义的标识符需避免与关键字冲突。</li>
+</ul>
+</li>
+<li><strong>命名建议</strong>：<ul>
+<li>使用有意义的名字，描述变量用途，如 <code>hour</code> 表示小时、<code>minute</code> 表示分钟。</li>
+<li>同类型变量可在一行定义（如 <code>int hour, minute;</code>）。</li>
+</ul>
+</li>
+<li><strong>变量定义与声明</strong>：<ul>
+<li>定义：为变量分配存储空间。</li>
+<li>声明：仅描述变量的类型和名字，可能不分配存储空间。</li>
+</ul>
+</li>
+</ol>
+<p><strong>注意事项</strong></p>
+<ul>
+<li>理解变量的概念不仅需知定义，还需了解其使用规则、限制与最佳实践。</li>
+<li>避免潜在冲突和错误，遵循变量命名规范和类型规则，是编程中的好习惯。</li>
+</ul>
+<hr>
+<hr>
+<h4 id="四-赋值"><a href="#四-赋值" class="headerlink" title="四.赋值"></a>四.赋值</h4><ol>
+<li><p><strong>定义与赋值</strong>：</p>
+<ul>
+<li>定义一个变量：分配存储空间并命名。</li>
+<li>赋值：将值存储到变量的存储空间中。</li>
+<li>变量必须先定义后使用，赋值语句右边的值必须与变量类型匹配。</li>
+</ul>
+<p>示例代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> firstletter;  <span class="comment">// 定义变量</span></span><br><span class="line"><span class="type">int</span> hour, minute;  <span class="comment">// 定义多个变量</span></span><br><span class="line">firstletter = <span class="string">&#x27;a&#x27;</span>; <span class="comment">// 赋值</span></span><br><span class="line">hour = <span class="number">11</span>;         <span class="comment">// 赋值</span></span><br><span class="line">minute = <span class="number">59</span>;       <span class="comment">// 赋值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>初始化</strong>：</p>
+<ul>
+<li>定义变量时直接赋初始值，称为初始化。</li>
+<li>初始化是特殊的定义语句，而不是赋值语句。</li>
+</ul>
+<p>示例代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> firstletter = <span class="string">&#x27;a&#x27;</span>;  <span class="comment">// 初始化</span></span><br><span class="line"><span class="type">int</span> hour = <span class="number">11</span>, minute = <span class="number">59</span>; <span class="comment">// 一次定义并初始化多个变量</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>变量值的使用</strong>：</p>
+<ul>
+<li>变量名在赋值语句左侧表示存储值。</li>
+<li>在其他语句中表示取出变量的值使用。</li>
+</ul>
+<p>示例代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Current time is %d:%d&quot;</span>, hour, minute); </span><br><span class="line"><span class="comment">// 使用变量 hour 和 minute 的值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>类型匹配</strong>：</p>
+<ul>
+<li>赋值时，值的类型必须与变量类型一致。</li>
+<li>类型不匹配会导致编译器报警或报错。</li>
+</ul>
+<p>错误示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> hour, minute;</span><br><span class="line">hour = <span class="string">&quot;Hello.&quot;</span>;  <span class="comment">// 错误：字符串不能赋值给整型变量</span></span><br><span class="line">minute = <span class="string">&quot;59&quot;</span>;    <span class="comment">// 错误：字符串不能赋值给整型变量</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>存储空间与类型</strong>：</p>
+<ul>
+<li>不同类型的变量占用的存储空间大小不同。</li>
+<li>最小存储单位为字节 (<code>Byte</code>)，<code>char</code> 类型变量占 1 字节，其他类型在不同平台大小可能不同。</li>
+</ul>
+</li>
+<li><p><strong>变量的表示（图示）</strong>：<br>在纸上模拟程序时，用框表示变量存储空间，框外标注变量名，框内存储值。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+------------+</span><br><span class="line">|   &#x27;a&#x27;      |  &lt;- firstletter</span><br><span class="line">+------------+</span><br><span class="line"></span><br><span class="line">+------------+</span><br><span class="line">|   11       |  &lt;- hour</span><br><span class="line">+------------+</span><br><span class="line"></span><br><span class="line">+------------+</span><br><span class="line">|   59       |  &lt;- minute</span><br><span class="line">+------------+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>示例代码</strong></p>
+<p>以下是完整示例代码展示定义、赋值和变量值的使用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> firstletter = <span class="string">&#x27;a&#x27;</span>;          <span class="comment">// 定义并初始化</span></span><br><span class="line">    <span class="type">int</span> hour = <span class="number">11</span>, minute = <span class="number">59</span>;      <span class="comment">// 定义多个变量并初始化</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Current time is %d:%d\n&quot;</span>, hour, minute); </span><br><span class="line">    <span class="comment">// 输出当前时间</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<h4 id="五-表达式"><a href="#五-表达式" class="headerlink" title="五.表达式"></a>五.表达式</h4><ol>
+<li><p><strong>表达式的基本概念</strong>：</p>
+<ul>
+<li>表达式由 <strong>运算符</strong> 和 <strong>操作数</strong> 组成，例如：<code>1 + 1</code>, <code>hour * 60 + minute</code>。</li>
+<li>操作数可以是常量或变量。</li>
+<li>运算符有优先级和结合性：<ul>
+<li><code>*</code> 和 <code>/</code> 优先级高于 <code>+</code> 和 <code>-</code>。</li>
+<li>运算顺序默认从左到右（左结合），但等号运算符是右结合的。</li>
+</ul>
+</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> total = total_minute = hour * <span class="number">60</span> + minute;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>计算顺序：<ol>
+<li>计算 <code>hour * 60 + minute</code>。</li>
+<li>将结果赋给 <code>total_minute</code>。</li>
+<li>再赋给 <code>total</code>。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>表达式语句</strong>：</p>
+<ul>
+<li>表达式后加分号 <code>;</code> 成为表达式语句。</li>
+<li>表达式语句只有在赋值或输出中才有意义，否则没有效果。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">total_minute = hour * <span class="number">60</span> + minute;  <span class="comment">// 有意义，保存结果</span></span><br><span class="line">hour * <span class="number">60</span> + minute;                <span class="comment">// 无意义，未保存结果</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>等号运算符特性</strong>：</p>
+<ul>
+<li>左侧必须是变量或能表示存储位置的左值（<code>lvalue</code>）。</li>
+<li>右侧可以是任何表达式（右值 <code>rvalue</code>）。</li>
+</ul>
+<p>错误示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minute + <span class="number">1</span> = hour; <span class="comment">// 错误，等号左侧不能是表达式</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>整数除法</strong>：</p>
+<ul>
+<li><p>两个整数相除结果仍是整数，小数部分直接<em><strong>截断</strong></em>。</p>
+</li>
+<li><p>示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d and %d hours\n&quot;</span>, hour, minute / <span class="number">60</span>);  <span class="comment">// 输出 11 and 0 hours</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>浮点数运算与类型转换</strong>：</p>
+<ul>
+<li><p>如果操作数类型不一致，C 编译器会自动进行隐式类型转换。</p>
+</li>
+<li><p>示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d and %f hours\n&quot;</span>, hour, minute / <span class="number">60.0</span>); </span><br><span class="line"><span class="comment">// minute 被转换为浮点数，结果为浮点数</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>表达式的组合</strong>：</p>
+<ul>
+<li><p>表达式可以嵌套和组合，但过度复杂会降低可读性。</p>
+</li>
+<li><p>简洁示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d:%d is %d minutes after 00:00\n&quot;</span>, hour, minute, hour * <span class="number">60</span> + minute);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>复杂组合示例（不推荐过度使用）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d:%d is %d minutes after 00:00\n&quot;</span>, hour, minute, total_minute = hour * <span class="number">60</span> + minute);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<p><strong>示例代码</strong></p>
+<p>以下代码展示了表达式的基本应用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> hour = <span class="number">11</span>, minute = <span class="number">59</span>; <span class="comment">// 定义并初始化</span></span><br><span class="line">    <span class="type">int</span> total_minute;          <span class="comment">// 定义变量</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 赋值与打印</span></span><br><span class="line">    total_minute = hour * <span class="number">60</span> + minute; </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d:%d is %d minutes after 00:00\n&quot;</span>, hour, minute, total_minute);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 整数除法</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d and %d hours\n&quot;</span>, hour, minute / <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 百分比计算</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d hours and %d percent of an hour\n&quot;</span>, hour, minute * <span class="number">100</span> / <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 浮点数运算</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d and %f hours\n&quot;</span>, hour, minute / <span class="number">60.0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">11:59 is 719 minutes after 00:00</span><br><span class="line">11 and 0 hours</span><br><span class="line">11 hours and 98 percent of an hour</span><br><span class="line">11 and 0.983333 hours</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<h4 id="六-字符类型与字符编码"><a href="#六-字符类型与字符编码" class="headerlink" title="六.字符类型与字符编码"></a>六.字符类型与字符编码</h4><ol>
+<li><p><strong>字符编码的概念</strong>：</p>
+<ul>
+<li><p>ASCII码</p>
+<p>是一种字符编码方式，将字符映射到整数值。</p>
+<ul>
+<li>ASCII码的取值范围为 <strong>0~127</strong>。</li>
+<li>可分为可见字符（如 <code>&#39;a&#39;</code>, <code>&#39;1&#39;</code>）和不可见字符（如 <code>\n</code>, <code>\t</code>）。</li>
+<li>示例：<code>&#39;a&#39;</code> 的 ASCII 码值是 97，<code>&#39;b&#39;</code> 的值是 98。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>字符型参与运算</strong>：</p>
+<ul>
+<li>在 C 语言中，<code>char</code> 本质是整型的一种，占用 1 个字节。</li>
+<li>当字符型参与算术运算时，会根据 <strong>隐式类型转换规则</strong> 转为整型（ASCII值）进行计算。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>, <span class="string">&#x27;a&#x27;</span> + <span class="number">1</span>);  <span class="comment">// 输出: b</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>计算过程：<ol>
+<li><code>&#39;a&#39;</code> 转为 ASCII 值 <code>97</code>。</li>
+<li>加 <code>1</code> 得 <code>98</code>。</li>
+<li><code>%c</code> 格式化为字符，打印 ASCII 值 <code>98</code> 对应的字符 <code>&#39;b&#39;</code>。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>字符的连续性</strong>：</p>
+<ul>
+<li><code>&#39;a&#39;</code>  <del><code>&#39;z&#39;</code>,<code>&#39;A&#39;</code> ~&#96;’Z’<code>,</code>‘0’&#96;</del><code>&#39;9&#39;</code> 的 ASCII 码是连续的<ul>
+<li><code>&#39;a&#39;</code> 的 ASCII 码为 97，<code>&#39;b&#39;</code> 为 98，<code>&#39;z&#39;</code> 为 122。</li>
+<li><code>&#39;0&#39;</code> 的 ASCII 码为 48，<code>&#39;9&#39;</code> 为 57。</li>
+</ul>
+</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="string">&#x27;0&#x27;</span> + <span class="number">9</span> == <span class="string">&#x27;9&#x27;</span>);  <span class="comment">// 输出: 1 (真)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>字符转义序列</strong>：</p>
+<ul>
+<li>可以通过转义序列使用 ASCII 码表示字符或字符串：<ul>
+<li><code>&#39;\0&#39;</code>: 表示 NUL 字符 (ASCII码 0)。</li>
+<li><code>&#39;\11&#39;</code> 或 <code>&#39;\x9&#39;</code>: 表示 Tab 字符。</li>
+<li><code>&quot;\x41&quot;</code>: 表示字符串 “A” (ASCII码 65)。</li>
+</ul>
+</li>
+<li>转义序列格式：<ul>
+<li>八进制：<code>\</code> 后跟 1~3 位八进制数字。</li>
+<li>十六进制：<code>\x</code> 或 <code>\X</code> 后跟 1~2 位十六进制数字。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>示例代码</strong></p>
+<p>以下代码展示了字符编码、字符运算及转义序列的应用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 字符编码</span></span><br><span class="line">    <span class="type">char</span> ch = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Character: %c, ASCII: %d\n&quot;</span>, ch, ch);  <span class="comment">// 输出字符及其ASCII值</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 字符运算</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c + 1 = %c\n&quot;</span>, ch, ch + <span class="number">1</span>);           <span class="comment">// &#x27;a&#x27; + 1 -&gt; &#x27;b&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 字符的连续性</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&#x27;0&#x27; + 9 == &#x27;9&#x27;: %d\n&quot;</span>, <span class="string">&#x27;0&#x27;</span> + <span class="number">9</span> == <span class="string">&#x27;9&#x27;</span>); <span class="comment">// 输出: 1 (真)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 转义序列</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Tab character: &#x27;%c&#x27;, ASCII: %d\n&quot;</span>, <span class="string">&#x27;\11&#x27;</span>, <span class="string">&#x27;\11&#x27;</span>); <span class="comment">// 输出: Tab字符</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hexadecimal A: &#x27;%c&#x27;\n&quot;</span>, <span class="string">&#x27;\x41&#x27;</span>);                 <span class="comment">// 输出: A</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用转义序列的字符串</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;String with Tab: \&quot;%s\&quot;\n&quot;</span>, <span class="string">&quot;\11Hello&quot;</span>);          <span class="comment">// 输出: 	Hello</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Character: a, ASCII: 97</span><br><span class="line">a + 1 = b</span><br><span class="line">&#x27;0&#x27; + 9 == &#x27;9&#x27;: 1</span><br><span class="line">Tab character: &#x27;	&#x27;, ASCII: 9</span><br><span class="line">Hexadecimal A: &#x27;A&#x27;</span><br><span class="line">String with Tab: &quot;	Hello&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Ethan Chang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/12/06/2024-12-6/">http://example.com/2024/12/06/2024-12-6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Digital Alchemist</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C/">C</a></div><div class="post-share"><div class="social-share" data-image="https://i.pinimg.com/736x/b1/fd/9f/b1fd9f687f45ab084a56cf40882b0dbd.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width no-desc" href="/2024/12/05/Hello-world-0/" title="Hello-world"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Hello-world</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://i.pinimg.com/736x/0a/aa/bd/0aaabd0d59dd536a48a591df211edf24.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Ethan Chang</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/408MyDad" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2013189697zsj@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F%E5%8F%98%E9%87%8F%E5%92%8C%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">常量变量和表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-C%E8%AF%AD%E8%A8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E8%BD%AC%E4%B9%89%E5%BA%8F%E5%88%97%E6%80%BB%E7%BB%93"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">一. C语言字符串与转义序列总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-%E5%B8%B8%E9%87%8F"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">二. 常量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89-%E5%8F%98%E9%87%8F"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">三.变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B-%E8%B5%8B%E5%80%BC"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">四.赋值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94-%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.0.0.5.</span> <span class="toc-text">五.表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AD-%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81"><span class="toc-number">1.0.0.6.</span> <span class="toc-text">六.字符类型与字符编码</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/12/06/2024-12-6/" title="常量变量和表达式"><img src="https://i.pinimg.com/736x/b1/fd/9f/b1fd9f687f45ab084a56cf40882b0dbd.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="常量变量和表达式"/></a><div class="content"><a class="title" href="/2024/12/06/2024-12-6/" title="常量变量和表达式">常量变量和表达式</a><time datetime="2024-12-06T09:52:02.000Z" title="发表于 2024-12-06 17:52:02">2024-12-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/05/Hello-world-0/" title="Hello-world">Hello-world</a><time datetime="2024-12-05T12:54:51.000Z" title="发表于 2024-12-05 20:54:51">2024-12-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://i.pinimg.com/736x/b1/fd/9f/b1fd9f687f45ab084a56cf40882b0dbd.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By Ethan Chang</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

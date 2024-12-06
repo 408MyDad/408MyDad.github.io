@@ -72,9 +72,9 @@ avatar:
 disable_top_img: false
 
 # If the banner of page not setting, it will show the default_top_img
-default_top_img: https://i.pinimg.com/736x/0e/3b/29/0e3b294beb09239a0625d82a2e2c0561.jpg
+default_top_img: https://i.pinimg.com/736x/52/01/4f/52014f98585349f02ac905aba0679579.jpg
 # The banner image of index page
-index_img:
+index_img: https://i.pinimg.com/736x/1a/2b/2b/1a2b2b15016d2f3f6032f214603275d4.jpg
 
 # The banner image of archive page
 archive_img: https://i.pinimg.com/736x/13/9b/1f/139b1f7fe567aa670e8d576690fcb83e.jpg
@@ -88,7 +88,7 @@ tag_img:
 tag_per_img:
 
 # Note: category page, not categories page
-category_img:
+category_img: https://i.pinimg.com/736x/9f/93/6e/9f936eedf8d9a1aea3309e6b9f411e42.jpg
 
 # The banner image of category page, you can set the banner image for each category
 # Format:
@@ -97,7 +97,7 @@ category_per_img:
 
 # The background image of footer
 footer_img: true
-img: https://i.pinimg.com/736x/ab/09/83/ab0983e940dd5d6aa3e5794e37242af9.jpg
+img: https://i.pinimg.com/736x/d6/02/1e/d6021e818bea832037fc2096e6d597be.jpg
 # Website Background
 # Can set it to color or image url
 background: https://i.pinimg.com/736x/66/5d/65/665d6535f6d9ee1913fa22cec9781f48.jpg

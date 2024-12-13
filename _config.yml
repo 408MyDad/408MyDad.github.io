@@ -107,7 +107,7 @@ deploy:
     url: git@github.com:408MyDad/408Mydad.github.io.git
     branch: main
 
-# Math-Ketax
+# Math-Katex
 markdown:
   plugins:
     - '@renbaoshuo/markdown-it-katex'

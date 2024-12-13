@@ -468,6 +468,8 @@ math:
     tags: none
 
   katex:
+    enable: true 
+    per_page: true
     # Enable the copy KaTeX formula
     copy_tex: false
 

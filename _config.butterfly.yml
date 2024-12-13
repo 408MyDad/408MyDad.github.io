@@ -317,7 +317,6 @@ aside:
     avatar: true
   card_categories:
     enable: true
-    enable: true
     # If set 0 will show all
     limit: 8
     # Choose: none / true / false

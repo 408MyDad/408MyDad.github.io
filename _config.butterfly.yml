@@ -78,8 +78,7 @@ default_top_img: https://i.pinimg.com/736x/2d/52/05/2d5205107c089d1fa3c5ac947c87
 index_img: https://cdn.pixabay.com/photo/2022/12/01/04/40/backpacker-7628303_1280.jpg
 
 # The banner image of archive page
-archive_img: https://i.pinimg.com/736x/13/9b/1f/139b1f7fe567aa670e8d576690fcb83e.jpg
-
+archive_img: 
 # Note: tag page, not tags page
 tag_img:
 
